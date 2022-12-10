@@ -5,15 +5,17 @@
   
 
   
-  <title>Archives: 2020/2 | 知不道</title>
+  <title>keras深度学习开发步骤 | 知不道</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="先把自己扔出去">
-<meta property="og:type" content="website">
-<meta property="og:title" content="知不道">
-<meta property="og:url" content="https://yuanzhaofei.com/archives/2020/02/index.html">
+  <meta name="description" content="深度学习应用越来越普遍，这里以基于python的深度学习库keras为例，阐述下开发具体步骤。  搜集数据  巧妇难为无米之炊，没有数据，什么都白搭。有了高质量的数据，有时候甚至简单的模型就能达到很好的效果。但是如何高效搜集有价值的数据，本身就是一个重大课题。甚至在很多时候，搜集数据是最耗时耗力的。 有时候是负样本太少，比如医疗图像，缺陷检测等。衍生出无监督学习AutoEncoder，样本均衡，样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="keras深度学习开发步骤">
+<meta property="og:url" content="https://yuanzhaofei.com/2020/03/15/keras%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/index.html">
 <meta property="og:site_name" content="知不道">
-<meta property="og:description" content="先把自己扔出去">
+<meta property="og:description" content="深度学习应用越来越普遍，这里以基于python的深度学习库keras为例，阐述下开发具体步骤。  搜集数据  巧妇难为无米之炊，没有数据，什么都白搭。有了高质量的数据，有时候甚至简单的模型就能达到很好的效果。但是如何高效搜集有价值的数据，本身就是一个重大课题。甚至在很多时候，搜集数据是最耗时耗力的。 有时候是负样本太少，比如医疗图像，缺陷检测等。衍生出无监督学习AutoEncoder，样本均衡，样">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T11:14:16.000Z">
+<meta property="article:modified_time" content="2020-03-16T01:46:05.667Z">
 <meta property="article:author" content="Yuan Zhaofei">
 <meta property="article:tag" content="童谣.">
 <meta name="twitter:card" content="summary">
@@ -65,192 +67,81 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/%E6%88%91%E7%9A%84%E5%9B%BD%E5%BA%867%E5%A4%A9%E4%B9%8B%E4%BD%98%E5%B1%B1%E4%B8%80%E6%97%A5%E6%B8%B8/" class="archive-article-date">
-  <time datetime="2020-02-29T10:08:58.000Z" itemprop="datePublished">Feb 29</time>
+        <section id="main"><article id="post-keras深度学习开发步骤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/keras%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/" class="article-date">
+  <time datetime="2020-03-15T11:14:16.000Z" itemprop="datePublished">2020-03-15</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/%E6%88%91%E7%9A%84%E5%9B%BD%E5%BA%867%E5%A4%A9%E4%B9%8B%E4%BD%98%E5%B1%B1%E4%B8%80%E6%97%A5%E6%B8%B8/">白水国庆游记</a>
+    <h1 class="article-title" itemprop="name">
+      keras深度学习开发步骤
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/%E6%9D%82%E7%A2%8E/" class="archive-article-date">
-  <time datetime="2020-02-29T09:10:07.000Z" itemprop="datePublished">Feb 29</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/%E6%9D%82%E7%A2%8E/">杂碎</a>
-    </h1>
-  
+        <p>深度学习应用越来越普遍，这里以基于python的深度学习库keras为例，阐述下开发具体步骤。</p>
+<ul>
+<li>搜集数据</li>
+</ul>
+<p>巧妇难为无米之炊，没有数据，什么都白搭。<br>有了高质量的数据，有时候甚至简单的模型就能达到很好的效果。<br>但是如何高效搜集有价值的数据，本身就是一个重大课题。甚至在很多时候，搜集数据是最耗时耗力的。</p>
+<p>有时候是负样本太少，比如医疗图像，缺陷检测等。衍生出无监督学习AutoEncoder，样本均衡，样本增强，参杂着传统机器学习策略等手段（比如虽然拿到等样本少，但我知道缺陷的描述，当作先验设计loss函数）。<br>有时候是噪声太多，比如由于历史原因，或客观原因，造成噪声很高，如何快速高效地清理噪声，本身也是一个课题，比如通过not fit的model，找出数据集中的潜在错误样本。<br>有时候是模棱两可，比如分类问题，有的图片即可以判为这一类，也可以判为另一类，这时就要一些trick了，比如多标签，甚至结合mixup等一些样本拼接的手段。<br>有时候是数据隐私，比如工业缺陷，医疗图像，购买记录等，这时要么在用户服务器办公，或者联邦学习，多方安全计算等。<br>有时候是矿坑挖矿，比如并没有直接的数据可用，但是历史数据中可以挖掘出想要的信息。如何设计方案要看功力的。<br>有时候是白手起家，什么数据都没有，设计如何采集数据，在哪里架设，如何数据回传，如何标注等等。</p>
+<p>数据搜集好后，得到的是图片相应的lable信息。可能牵扯到采样策略，比如如何选择样本对子或者样本元组。</p>
+<ul>
+<li>数据预处理</li>
+</ul>
+<p>有时候因为图像太大，先做resize，保存到numpy当中；<br>有时候做一些filter滤波，或者做一些对齐操作。（比如人脸5点对齐，广告框彷射变换对齐等）<br>有时候是先做目标检测，然后再分类等等。</p>
+<ul>
+<li><p>构建网络结构</p>
+</li>
+<li><p>训练模型</p>
+</li>
+<li><p>测试效果</p>
+</li>
+<li><p>错误样本分析</p>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/%E4%B8%8A%E9%9F%B3%E5%A5%B3%E7%94%9F/" class="archive-article-date">
-  <time datetime="2020-02-29T08:57:58.000Z" itemprop="datePublished">Feb 29</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/%E4%B8%8A%E9%9F%B3%E5%A5%B3%E7%94%9F/">上音女生</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/memory/" class="archive-article-date">
-  <time datetime="2020-02-29T08:20:20.000Z" itemprop="datePublished">Feb 29</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuanzhaofei.com/2020/03/15/keras%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/" data-id="ck82ucjlv00053cs6cqzmh16d" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/memory/">memory</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/789/" class="archive-article-date">
-  <time datetime="2020-02-29T04:41:45.000Z" itemprop="datePublished">Feb 29</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/789/">789</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/29/%E6%B5%AE%E8%BA%81/" class="archive-article-date">
-  <time datetime="2020-02-28T17:03:52.000Z" itemprop="datePublished">Feb 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/29/%E6%B5%AE%E8%BA%81/">浮躁</a>
-    </h1>
+    <a href="/2020/03/22/%E6%A0%87%E7%AD%BE%E5%92%8C%E5%88%86%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          标签和分类
+        
+      </div>
+    </a>
   
+  
+    <a href="/2020/03/15/%E6%88%91%E5%AE%B6%E6%98%AF%E6%B9%96%E5%8C%97%E7%9A%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">我家是湖北的</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/24/xxo/" class="archive-article-date">
-  <time datetime="2020-02-24T02:37:18.934Z" itemprop="datePublished">Feb 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/24/xxo/">xxo</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/24/hello-world/" class="archive-article-date">
-  <time datetime="2020-02-23T19:54:46.869Z" itemprop="datePublished">Feb 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/02/23/%E7%AB%A5%E8%B0%A3/" class="archive-article-date">
-  <time datetime="2020-02-23T08:03:47.000Z" itemprop="datePublished">Feb 23</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/23/%E7%AB%A5%E8%B0%A3/">童谣</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
