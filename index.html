@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2022/12/10/%E5%B0%8F%E5%A7%A8%E5%9C%A8%E6%96%B0%E7%96%86/" data-id="clbhhoxej000352gt560b3vu7" class="article-share-link">Share</a>
+      <a data-url="https://yuanzhaofei.com/2022/12/10/%E5%B0%8F%E5%A7%A8%E5%9C%A8%E6%96%B0%E7%96%86/" data-id="clbovvln4000t6d9k80jn5bd7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a></li></ul>
@@ -155,74 +155,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2020/03/15/%E6%88%91%E5%AE%B6%E6%98%AF%E6%B9%96%E5%8C%97%E7%9A%84/" data-id="ck82trtxs00003cs66i9c007m" class="article-share-link">Share</a>
+      <a data-url="https://yuanzhaofei.com/2020/03/15/%E6%88%91%E5%AE%B6%E6%98%AF%E6%B9%96%E5%8C%97%E7%9A%84/" data-id="clbovvln6000w6d9khqar1hdv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nohup-screen" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/13/nohup-screen/" class="article-date">
-  <time datetime="2020-03-13T07:38:11.000Z" itemprop="datePublished">2020-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/13/nohup-screen/">nohup&amp;screen</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>hup是hang up的缩写，意思是挂断。nohup就是不要挂断。</p>
-</blockquote>
-<hr>
-<p>nohup命令，使得程序忽略SIGHUP信号(当前控制终端关闭时发送到进程的信号)，也就是说，虽然终端关闭了，该命令还可以照常执行。<br>如果想把它放在后台运行，命令最后加 &amp; ，这样就可以在前台输入其他命令而不受干扰。</p>
-<blockquote>
-<p>&amp; 放到后台运行，暂时看不到，但是还在跑。</p>
-</blockquote>
-<p>比如我在服务器上启动一个notebook服务，命令如下，日志记录到log文件中，放在后台执行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup jupyter notebook --no-browser --port=9000 --ip=10.220.177.116 --allow-root &gt; /home/jupyter/jupyter.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
-<p>通过 ps -ef，或者 ps aux 或者 ps -a 都可以查看当前运行的进程。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep jupyter | grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span></span><br></pre></td></tr></table></figure>
-<p>通过grep筛选，grep -v grep是为了剔除grep自身，awk用来提取进程号（进程ID）。</p>
-<p>通过kill命令可以杀死进程。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> processID</span><br></pre></td></tr></table></figure>
-<p>强制杀死。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 processID</span><br></pre></td></tr></table></figure>
-<p>如果开始没有加 &amp;，运行中想把它放到后台，使用快捷键Ctrl + Z，这样进程就暂停在后台。<br>如果接着想恢复到前台，则使用fg命令恢复到前台执行。如果想在后台执行，则用bg命令。<br>如果有多个进程，则fg和bg需要加参数（jobs可以查看）<br>总结：fg和bg都是将停止的进程激活，一个是从后台拿到前台，一个是从前台拿到后台。</p>
-<p>举个例子，用vim更在编辑一些东西，想调用shell命令查一些东西，可以ctrl+z，执行完后fg恢复vim。</p>
-<p>虽然nohup很容易使用，但还是比较“简陋”的，对于简单的命令能够应付过来，对于复杂的需要人机交互的任务就麻烦了。<br>其实我们可以使用一个更为强大的实用程序screen。流行的Linux发行版（例如Red Hat）通常会自带screen实用程序，ubuntu没有的话</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install screen</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">新建一个screen窗口 screen -S name</span><br><span class="line">列出screen窗口 screen -ls</span><br><span class="line">进入一个screen窗口 screen -r（restore） name</span><br><span class="line">结束一个screen窗口 screen -S name -X quit</span><br><span class="line">退出screen窗口 ctrl + a + d （detach）</span><br></pre></td></tr></table></figure>
-
-<p>补充一个命令 tee， 不仅输入到文件，还同时显示在屏幕上. 如果用 &gt; 则只会到文件，屏幕就不显示了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup jupyter notebook --no-browser --port=9000 --ip=10.220.177.116 --allow-root 2&gt;&amp;1 | tee /home/jupyter/jupyter.log  &amp;</span><br></pre></td></tr></table></figure>
-<p>2&gt;&amp;1 是数据流双定向，即无论正常和错误的都输出到这里。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2020/03/13/nohup-screen/" data-id="ck7pzdznp0000sps6bvl4dx6p" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -263,87 +200,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2020/03/10/%E7%94%9F%E6%B4%BB%E5%A4%9A%E8%89%B0/" data-id="ck7kp2dzk00007u9k8fwf00c8" class="article-share-link">Share</a>
+      <a data-url="https://yuanzhaofei.com/2020/03/10/%E7%94%9F%E6%B4%BB%E5%A4%9A%E8%89%B0/" data-id="clbovvln5000u6d9kh8go72p6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Markdown" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/08/Markdown/" class="article-date">
-  <time datetime="2020-03-08T10:10:23.000Z" itemprop="datePublished">2020-03-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/">技术原理</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/algorithm/">algorithm</a>►<a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>►<a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/">python</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/08/Markdown/">Markdown</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>Markdown is a way to write content for the web.<br>鉴于Markdown使用的越来越多，不光hexo写blog用到，jupyter notebook也用到，所以这里总结一下基本用法。<br><a href="https://www.markdowntutorial.com/" target="_blank" rel="noopener">更多内容</a></p>
-<h2 id="常用符号"><a href="#常用符号" class="headerlink" title="常用符号"></a>常用符号</h2><ul>
-<li><p>*<br>斜体，<em>星号夹住文本</em>，就会变成斜体。_下划线也有类似功能。</p>
-</li>
-<li><p>**<br>粗体，<strong>两个星号夹住文本</strong>，就会变成粗体。__两个下划线类似效果。<br>三个星号可以同时斜体加粗 <strong><em>比如</em></strong>，**_似乎在hexo中不能成功。</p>
-</li>
-<li><p>～～<br>双波浪号夹住就会<del>删除一段文字</del></p>
-</li>
-<li><p>#<br>#代表标题，如果有两个就是二级标题，共有六级。注意#要打头且和标题正文之间至少留一个空格.</p>
-<h2 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h2><h4 id="标题四"><a href="#标题四" class="headerlink" title="标题四"></a>标题四</h4><h6 id="标题六"><a href="#标题六" class="headerlink" title="标题六"></a>标题六</h6></li>
-<li><p>inline link<br>隐式链接，中括号内放置显示链接提示，小括号内放置真正链接网址。</p>
-</li>
-<li><p>link2image<br>和文本链接不同的是多了个感叹号。<br><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg" alt="A beatiful Tiger"><br>本地图片链接方式，参见test-link.md</p>
-</li>
-<li><p>引用</p>
-<blockquote>
-<p>在文字前面加上大于号，用于引用名人名言，或者老话说，或者<strong>俚语方言</strong>等等。</p>
-</blockquote>
-</li>
-<li><p>*</p>
-</li>
-</ul>
-<p>*代表列表，-类似功能。</p>
-<ul>
-<li>三星号<br>三个星号代表分割线</li>
-</ul>
-<p>[^_^] 注释<br>注意，注释的内容要另起一行，Tab空格。</p>
-<ul>
-<li><p>代码<br><code>print(&#39;I Love U !&#39;)</code></p>
-</li>
-<li><p>其他<br>不属于markdown范畴，但是很有用。</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">x = random.random.int(<span class="number">10</span>)</span><br><span class="line">print(<span class="string">'Hello World !'</span>)</span><br><span class="line">print(<span class="string">f'x = <span class="subst">&#123;x&#125;</span>'</span>)</span><br><span class="line">jupyter nbconvert --to script  classifier_pipeline.ipynb </span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2020/03/08/Markdown/" data-id="ck7jrseb50003ki9khvin4vep" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" rel="tag">技术文档</a></li></ul>
 
     </footer>
   </div>
@@ -383,68 +243,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2020/02/23/%E7%AB%A5%E8%B0%A3/" data-id="ck77hpu4y0006u79kcfm91c8c" class="article-share-link">Share</a>
+      <a data-url="https://yuanzhaofei.com/2020/02/23/%E7%AB%A5%E8%B0%A3/" data-id="clbovvln6000y6d9kca0p61no" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AB%A5%E8%B0%A3/" rel="tag">童谣</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-打油诗" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2008/12/29/%E6%89%93%E6%B2%B9%E8%AF%97/" class="article-date">
-  <time datetime="2008-12-28T17:08:21.000Z" itemprop="datePublished">2008-12-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%97%E6%AD%8C/">诗歌</a>►<a class="article-category-link" href="/categories/%E8%AF%97%E6%AD%8C/%E6%89%93%E6%B2%B9%E8%AF%97/">打油诗</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2008/12/29/%E6%89%93%E6%B2%B9%E8%AF%97/">打油诗</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2008年的时候，诸事不顺，自己写过那么几首打油诗</p>
-<h2 id="蛋壳"><a href="#蛋壳" class="headerlink" title="蛋壳"></a>蛋壳</h2><p>你走了<br>天塌了<br>我哭了<br>良久<br>才发现<br>别有洞天</p>
-<h2 id="受伤"><a href="#受伤" class="headerlink" title="受伤"></a>受伤</h2><p>受伤<br>经过伤心事<br>怎能不受伤<br>受伤又能怎么样<br>还不是受伤</p>
-<h2 id="我中毒啦"><a href="#我中毒啦" class="headerlink" title="我中毒啦"></a>我中毒啦</h2><p>我中毒啦中毒啦<br>我都不知道怎么去杀<br>我昨天刚装上诺顿今天就换卡巴<br>我c盘d盘和e盘<br>挨个的格式化啊<br>我装完2000装xp<br>再用vista</p>
-<p>我中毒啦中毒啦<br>我都不知道怎么去杀<br>脑子整天胡乱想饭也吃不下<br>我凌晨三点玩游戏白天床上趴<br>你说是不是早晚得回老家</p>
-<h2 id="思念的滋味"><a href="#思念的滋味" class="headerlink" title="思念的滋味"></a>思念的滋味</h2><p>你知不知道<br>思念一个人的滋味<br>就像白砂糖遇见了水</p>
-<p>你知不知道<br>思念一个人的滋味<br>就像阴天里一杯苦咖啡</p>
-<p>你知不知道<br>思念一个人的滋味<br>就像棉铃虫喝了敌敌畏</p>
-<p>你知不知道<br>思念一个人的滋味<br>就像蜻蜓点了一下水</p>
-<p>你知不知道<br>思念一个人的滋味<br>就像树叶轻轻随风飞</p>
-<p>你知不知道<br>思念一个人的滋味<br>就像喝了一杯冰冷的水<br>然后慢慢<br>一滴一滴<br>化成热泪……</p>
-<h2 id="那个你，那个我"><a href="#那个你，那个我" class="headerlink" title="那个你，那个我"></a>那个你，那个我</h2><p>记得那一天，<br>我们偶相见，<br>上海地铁边，<br>夏末的傍晚；</p>
-<p>如果有一天，<br>你我又见面，<br>当时可记得，<br>你是那个你，我是那个我。。。</p>
-<h2 id="粗糙的美"><a href="#粗糙的美" class="headerlink" title="粗糙的美"></a>粗糙的美</h2><p>早起，阴雨。<br>来上海已三年挂零，却至今不能喜欢这半死不活的天气。习惯性的阴天，习惯性的绵绵细雨，总给人一种尿不净的感觉。相比起来，我更怀念北方的原野，这个时候，家乡应该满是荒凉、肃杀的气氛吧，这种大自然的原始冲动也许更能拉近我和大地之间的距离。收获的果实也应该是沉甸甸的，晴天总是唱主角的，下雨也是豆大的雨滴铺将下来，给人一种痛快淋漓的快感。慢慢地，我发现，我越来越喜欢粗线条的美，而这是上海所不能给我的。<br>上海似乎更易让人产生一种小资情调，混着说不清道不明的淡淡的忧郁和轻愁。看着天气，想想自己，萌出，一丝诗意。<br>衣衫厚薄薄复厚，<br>昔日同学早出走。<br>孤身对影自言语，<br>不觉已是江南秋。</p>
-<h2 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h2><p>人生失意十八九，<br>自在潇洒古少有。<br>惟有曹州袁层次，<br>刀尖上面舞着走。<br>窗外阳光明媚，一切都在好转，写首诗见证自己此刻的心情。<br>①曹州：袁层次老家，今山东菏泽。<br>②层次：作者飞，字层次。很久不用了。</p>
-<p>2008年期间 by zhfyuan</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://yuanzhaofei.com/2008/12/29/%E6%89%93%E6%B2%B9%E8%AF%97/" data-id="ck77hpu4w0003u79k3gdg15vx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a></li></ul>
 
     </footer>
   </div>
@@ -463,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/">技术原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/algorithm/">algorithm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/">python</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E6%AD%8C/">诗歌</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E6%AD%8C/%E6%89%93%E6%B2%B9%E8%AF%97/">打油诗</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/">技术原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86/algorithm/">algorithm</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/">python</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -473,7 +275,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" rel="tag">技术文档</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AB%A5%E8%B0%A3/" rel="tag">童谣</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AB%A5%E8%B0%A3/" rel="tag">童谣</a></li></ul>
     </div>
   </div>
 
@@ -483,7 +285,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 20px;">原创</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" style="font-size: 10px;">技术文档</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 20px;">日志</a> <a href="/tags/%E7%AB%A5%E8%B0%A3/" style="font-size: 10px;">童谣</a>
+      <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 10px;">原创</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 20px;">日志</a> <a href="/tags/%E7%AB%A5%E8%B0%A3/" style="font-size: 10px;">童谣</a>
     </div>
   </div>
 
@@ -492,7 +294,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/12/">December 2008</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
     </div>
   </div>
 
@@ -513,15 +315,11 @@
           </li>
         
           <li>
-            <a href="/2020/03/13/nohup-screen/">nohup&amp;screen</a>
-          </li>
-        
-          <li>
             <a href="/2020/03/10/%E7%94%9F%E6%B4%BB%E5%A4%9A%E8%89%B0/">生活多艰</a>
           </li>
         
           <li>
-            <a href="/2020/03/08/Markdown/">Markdown</a>
+            <a href="/2020/02/23/%E7%AB%A5%E8%B0%A3/">童谣</a>
           </li>
         
       </ul>
